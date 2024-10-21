@@ -1,22 +1,30 @@
-#include <iostream>
-#include <string>
+#include "PhoneBook.hpp"
 
 int main()
 {
     std::string cmd;
+    PhoneBook userphone;
+
     while (1)
     {
-        std::cout << " enter a command\n";
-        std::cin >> cmd;
+        std::cout << "Enter a Command, ADD, SEARSH, EXIT" << std::endl;
+        std::getline(std::cin, cmd);
         if (cmd.empty())
-            return (1);
-        std::cout << cmd << std::endl;
+            continue;
+        if (cmd == "ADD")
+            userphone.AddCommand(userphone);
+        else if (cmd == "SEARSH")
+            userphone.SearshCommand(userphone);
+        else if (cmd == "EXIT")
+        {
+            std::cout << "Exiting" << std::endl;
+            return (0);
+        }
+        else
+        {
+            std::cout << "Invalide Input!!" << std::endl;
+            continue;
+        }
     }
+    return (0);
 }
-//     Contact obj;
-
-//     obj.SetFirstName("ali");
-//     obj.SetLastName("akouhar");
-//     std::cout << obj.GetFirstName() << " "<< obj.GetLastName() << std::endl;
-
- 
