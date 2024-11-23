@@ -3,33 +3,33 @@
 const int Fixed::n = 8;
 
 Fixed::Fixed() : fixNum(0){
-    std::cout << "Default constructor called\n";
+    // std::cout << "Default constructor called\n";
 }
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 Fixed::Fixed(const Fixed& other)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     fixNum = other.fixNum;
 }
 Fixed& Fixed::operator=(const Fixed& other)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    // std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)
         fixNum = other.fixNum;
     return *this;
 }
 Fixed::Fixed(const int numInt)
 {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
     fixNum = numInt * (1 << 8);
 }
 
 Fixed::Fixed(const float numFloat)
 {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     fixNum = roundf(numFloat * (1 << n));
 }
 
@@ -39,7 +39,7 @@ int Fixed::getRawBits(void) const {
 }
 void Fixed::setRawBits(int const raw)
 {
-    std::cout << "setRawBits member function called" << std::endl;
+    // std::cout << "setRawBits member function called" << std::endl;
     fixNum = raw;
 }
 
@@ -59,21 +59,21 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 }
 /* COMPARAISON OPERATIONS */
 
-bool Fixed::operator==(const Fixed& other){return (fixNum == other.fixNum);}
+bool Fixed::operator==(const Fixed& other)const{return (fixNum == other.fixNum);}
 
-bool Fixed::operator!=(const Fixed& other){return (fixNum != other.fixNum);}
+bool Fixed::operator!=(const Fixed& other)const{return (fixNum != other.fixNum);}
 
-bool Fixed::operator<(const Fixed& other){return (fixNum < other.fixNum);}
+bool Fixed::operator<(const Fixed& other)const {return (fixNum < other.fixNum);}
 
-bool Fixed::operator<=(const Fixed& other){return (fixNum <= other.fixNum);}
+bool Fixed::operator<=(const Fixed& other)const {return (fixNum <= other.fixNum);}
 
-bool Fixed::operator>(const Fixed& other){return (fixNum > other.getRawBits());}
+bool Fixed::operator>(const Fixed& other)const {return (fixNum > other.fixNum);}
 
-bool Fixed::operator>=(const Fixed& other){return (fixNum >= other.fixNum);}
+bool Fixed::operator>=(const Fixed& other)const {return (fixNum >= other.fixNum);}
 
 /* ARITHMITIQ OPERATIONS */
 
-Fixed Fixed::operator+(const Fixed& other)
+Fixed Fixed::operator+(const Fixed& other) const
 {
     Fixed obj;
 
@@ -81,7 +81,7 @@ Fixed Fixed::operator+(const Fixed& other)
     return (obj);
 }
 
-Fixed Fixed::operator-(const Fixed& other)
+Fixed Fixed::operator-(const Fixed& other)const
 {
     Fixed obj;
 
@@ -89,7 +89,7 @@ Fixed Fixed::operator-(const Fixed& other)
     return (obj);
 }
 
-Fixed Fixed::operator*(const Fixed& other)
+Fixed Fixed::operator*(const Fixed& other) const
 {
     Fixed obj;
 
@@ -97,7 +97,7 @@ Fixed Fixed::operator*(const Fixed& other)
     return (obj);
 }
 
-Fixed Fixed::operator/(const Fixed& other)
+Fixed Fixed::operator/(const Fixed& other) const
 {
     Fixed obj;
 

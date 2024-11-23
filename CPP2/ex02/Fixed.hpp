@@ -21,17 +21,17 @@ class Fixed{
         int toInt(void) const;
         float toFloat(void) const;
         /* COMPARAISON OPERATIONS */
-        bool operator==(const Fixed& other);
-        bool operator!=(const Fixed& other);
-        bool operator<(const Fixed& other);
-        bool operator<=(const Fixed& other);
-        bool operator>(const Fixed& other);
-        bool operator>=(const Fixed& other);
+        bool operator==(const Fixed& other)const;
+        bool operator!=(const Fixed& other)const;
+        bool operator<(const Fixed& other) const;
+        bool operator<=(const Fixed& other)const;
+        bool operator>(const Fixed& other) const;
+        bool operator>=(const Fixed& other) const;
         /* ARITHMITIC OPERATIONS */
-        Fixed operator+(const Fixed& other);
-        Fixed operator-(const Fixed& other);
-        Fixed operator*(const Fixed& other);
-        Fixed operator/(const Fixed& other);
+        Fixed operator+(const Fixed& other) const;
+        Fixed operator-(const Fixed& other) const;
+        Fixed operator*(const Fixed& other) const;
+        Fixed operator/(const Fixed& other) const;
         /* PRE-POST INCREMENTATION */
         Fixed& operator++();
         Fixed operator++(int);
