@@ -10,16 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
+CXX = c++
 SRC = main.cpp Harl.cpp 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 NAME = harlFilter
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean: 
 	rm -rf $(OBJ)

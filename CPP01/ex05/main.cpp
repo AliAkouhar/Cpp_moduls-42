@@ -17,5 +17,7 @@ int main()
     Harl obj;
 
     obj.complain("info");
+    obj.complain("debug");
+    obj.complain("error");
     return (0);
 }

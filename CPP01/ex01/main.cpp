@@ -14,11 +14,11 @@
 
 int main()
 {
-    Zombie *horde = zombieHorde(4 , "Zombie");
+    Zombie *horde = zombieHorde(20 , "Zombie");
     int i;
 
     i = 0;
-    while(i < 4)
+    while(i < 20)
     {
         horde[i].announce();
         i++;

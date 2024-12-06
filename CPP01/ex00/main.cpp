@@ -14,10 +14,8 @@
 
 int main()
 {
-    Zombie obj("foo");
-    obj.announce();
     Zombie* newOne = newZombie("heap");
     newOne->announce();
+    randomChump("stack");
     delete(newOne);
-    
 }

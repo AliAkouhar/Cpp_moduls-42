@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
+CXX = c++
 SRC = main.cpp Harl.cpp 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = harl1
@@ -19,7 +19,7 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean: 
 	rm -rf $(OBJ)

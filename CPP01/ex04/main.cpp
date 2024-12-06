@@ -13,36 +13,6 @@
 #include <iostream>
 #include <fstream>
 
-
-//------->> HOW TO READ FROM A FILE
-// int main()
-// {
-//     std::string s;
-//     std::ifstream file("file.txt");
-//     if (!file.is_open())
-//     {
-//         std::cout << "error in opening step\n";
-//         return (1);
-//     }
-//     while (std::getline(file, s))
-//     {
-//     // std::cout << "hello\n";
-//         std::cout << s << std::endl;
-//     }
-// }
-
-// ------->> HOW TO WRITE IN A FILE
-
-// int main()
-// {
-//     std::string s = "hello cv";
-//     std::ofstream Myfile("myfile.txt");
-//     Myfile << s;
-// }
-// C++ program to demonstrate functioning of substr()
-// #include <iostream>
-// #include <string>
-
 void    ft_replace(std::ofstream& file2, std::string& orig, std::string& repl, std::string& input)
 {
     int i;
@@ -51,7 +21,6 @@ void    ft_replace(std::ofstream& file2, std::string& orig, std::string& repl, s
     i = 0;
     while (input[i])
     {
-    // std::cout << "hello\n";
         if (input.substr(i, orig.length()) == orig)
         {
             Minput += repl;
@@ -73,6 +42,8 @@ int main(int ac, char **av)
     std::string input;
     std::string orig;
     std::string repl;
+    std::ifstream   file;
+    std::ofstream   file2;
     bool FirstLine;
     if (ac < 4)
     {
@@ -87,18 +58,20 @@ int main(int ac, char **av)
         std::cout << "empty string!!\n";
         return (1);
     }
-    secondfile = filename + ".replace";
-    std::ofstream file2(secondfile);
-    if (!file2.is_open())
+    // std::ifstream file(filename);
+    file.open(filename.c_str());
+    if (!file.is_open())
     {
         std::cout << "an error occured when opining file\n";
         return (1);
     }
-    std::ifstream file(filename);
-    if (!file.is_open())
+    secondfile = filename + ".replace";
+    // std::ofstream file2(secondfile);
+    file2.open(secondfile.c_str());
+    if (!file2.is_open())
     {
         std::cout << "an error occured when opining file\n";
-        file2.close();
+        file.close();
         return (1);
     }
     FirstLine = true;
