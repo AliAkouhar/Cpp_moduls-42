@@ -18,6 +18,6 @@ int main()
 
     obj.complain("info");
     obj.complain("debug");
-    obj.complain("error");
+    obj.complain("false");
     return (0);
 }

@@ -15,7 +15,7 @@
 Zombie* zombieHorde( int N, std::string name){
     int i;
     
-    Zombie* horde = new Zombie[N];
+    Zombie* horde = new Zombie[N]; // malloc(sizeof(Zombie) * N)
     i = 0;
     while (i < N)
     {

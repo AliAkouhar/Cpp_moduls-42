@@ -12,7 +12,7 @@
 
 CXX = c++
 SRC = main.cpp Harl.cpp 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = harlFilter
 OBJ = $(SRC:.cpp=.o)
 

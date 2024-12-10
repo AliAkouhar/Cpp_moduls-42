@@ -16,10 +16,10 @@ HumanB::HumanB(const std::string& nameB) : weaponB(NULL), name(nameB) {}
 
 void HumanB::attack() const
 {
-    std::cout << name
-          <<  " attacks with their "
-          << weaponB->getType()
-          << std::endl;
+    if (weaponB)
+        std::cout << name <<  " attacks with their " << weaponB->getType() << std::endl;
+    else
+        std::cout << name << " has no weapon !!" << std::endl;
 }
 
 void HumanB::setWeapon(Weapon& _weapon)
