@@ -17,7 +17,9 @@ int main()
     Harl obj;
 
     obj.complain("info");
+    std::cout << "\n---------------------------------\n" << std::endl;
     obj.complain("debug");
+    std::cout << "\n---------------------------------\n" << std::endl;
     obj.complain("false");
     return (0);
 }

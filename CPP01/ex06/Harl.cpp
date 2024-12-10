@@ -47,29 +47,18 @@ void Harl::complain(std::string level)
     void (Harl::*arr[4])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     switch (i)
     {
-    case 0:
-        (this->*arr[0])();
-    case 1:
-        (this->*arr[1])();
-    case 2:
-        (this->*arr[2])();
-    case 3:
-        (this->*arr[3])();
-        break;
-    default:
-        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-        break;
+        case 0:
+            (this->*arr[0])();
+        case 1:
+            (this->*arr[1])();
+        case 2:
+            (this->*arr[2])();
+        case 3:
+            (this->*arr[3])();
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+            break;
     }
-    // i = 0;
-    // while (i < 4)
-    // {
-    //     if (str[i] == level)
-    //     {
-    //         (this->*arr[i])();
-    //         return ;
-    //     }
-    //     i++;
-    // }
-    // std::cout << "Invalaid level\n";
 
 }
