@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/14 11:23:24 by aakouhar          #+#    #+#              #
-#    Updated: 2024/11/04 12:29:05 by aakouhar         ###   ########.fr        #
+#    Created: 2024/11/24 10:32:38 by aakouhar          #+#    #+#              #
+#    Updated: 2024/11/24 17:06:51 by aakouhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
-SRC = main.cpp HumanA.cpp HumanB.cpp weapon.cpp
+SRC = main.cpp ClapTrap.cpp
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = weap
+NAME = a.out
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
