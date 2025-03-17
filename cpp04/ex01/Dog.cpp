@@ -1,44 +1,45 @@
 #include "Dog.hpp"
 
 Dog::Dog()
-{
+{ 
+    std::cout << "The default Dog constructor was called\n";
     type = "Dog";
     dogBrain = new Brain;
-    std::cout << "The Default Dog constructor was called\n";
 }
-
-Dog::~Dog()
+Dog::~Dog() 
 {
     delete dogBrain;
-    std::cout << "The Dog Destructor was called\n";
+    std::cout << "The Dog destructor was called\n";
+}
+
+Dog::Dog(const Dog& other) : Animal(other)
+{
+     *this = other;
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
     if (this != &other)
     {
+        dogBrain = new Brain(*other.dogBrain);
         this->type = other.type;
-        *this->dogBrain = *other.dogBrain;
     }
-   return (*this); 
+    return *this;
 }
 
-Dog::Dog(const Dog& other) : Animal(other)
-{
-    *this = other;
-}
-
-void Dog::makeSound() const
-{
-    std::cout << "hoaw hoaw...\n";
-}
-
-void Dog::setBrain(std::string idea, int index)
-{
-    dogBrain->setIdea(idea, index);
+void Dog::makeSound() const{
+    std::cout << "Brak Brak...\n";
 }
 
 std::string Dog::getBrain(int index)
 {
-    return (dogBrain->getIdea(index));
+    if (index >= 0 && index < 100)
+        return dogBrain->getIdea(index);
+    return NULL;
+}
+
+void Dog::setBrain(std::string _idea, int index)
+{
+    if (index >= 0 && index < 100)
+        dogBrain->setIdea(_idea, index);
 }

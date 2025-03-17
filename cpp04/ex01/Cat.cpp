@@ -1,16 +1,20 @@
 #include "Cat.hpp"
 
-Cat::Cat()
-{
-    type = "Cat";
-    catBrain = new Brain;
-    std::cout << "The Default Cat constructor was called\n";
+Cat::Cat() 
+{ 
+        std::cout << "The default Cat constructor was called\n";
+        type = "Cat";
+        catBrain = new Brain;
 }
-
 Cat::~Cat()
 {
     delete catBrain;
-    std::cout << "The Cat Destructor was called\n";
+    std::cout << "The Cat destructor was called\n";
+}
+
+Cat::Cat(const Cat& other) : Animal(other)
+{
+     *this = other;
 }
 
 Cat& Cat::operator=(const Cat& other)
@@ -18,27 +22,24 @@ Cat& Cat::operator=(const Cat& other)
     if (this != &other)
     {
         this->type = other.type;
-        *this->catBrain = *other.catBrain;
+        catBrain = new Brain(*other.catBrain);
     }
-    return (*this);
+    return *this;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
-{
-    *this = other;
-}
-
-void Cat::makeSound() const
-{
-    std::cout << "moaw moaw...\n";
-}
-
-void Cat::setBrain(std::string idea, int index)
-{
-    catBrain->setIdea(idea, index);
+void Cat::makeSound() const{
+    std::cout << "Meaow Meaow...\n";
 }
 
 std::string Cat::getBrain(int index)
 {
-    return (catBrain->getIdea(index));
+    if (index >= 0 && index < 100)
+        return catBrain->getIdea(index);
+    return NULL;
+}
+
+void Cat::setBrain(std::string _idea, int index)
+{
+    if (index >= 0 && index < 100)
+        catBrain->setIdea(_idea, index);
 }
