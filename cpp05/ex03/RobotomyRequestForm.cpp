@@ -33,3 +33,9 @@ void RobotomyRequestForm::execute(Bureacrat const & executor) const{
     else
         throw GradeTooLowException();
 }
+
+
+AForm* RobotomyRequestForm::createForm(std::string target)
+{
+    return new RobotomyRequestForm(target);
+}

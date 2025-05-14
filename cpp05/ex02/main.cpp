@@ -5,19 +5,19 @@
 # include "PresidentialPardonForm.hpp"
 int main()
 { 
-    //check the initialization list of all forms and then creacte the main function and go to final exercice
-    // std::cout << "******************SHRUBBERY****************\n";
-    // try {
-    //     Bureacrat b("ali", 10);
-    //     ShrubberyCreationForm ber("home");
-    //     std::cout << b;
-    //     std::cout << ber;
-    //     b.executeForm(ber);
-    // }
-    // catch (std::exception& e)
-    // {
-    //     std::cout << e.what();
-    // }
+    std::cout << "******************SHRUBBERY****************\n";
+    try {
+        Bureacrat b("ali", 1);
+        ShrubberyCreationForm ber("home");
+        std::cout << b;
+        b.signForm(ber);
+        std::cout << ber;
+        b.executeForm(ber);
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what();
+    }
     std::cout << "******************ROBOTMY****************\n";
     try{
         Bureacrat c("hmo", 3);
@@ -25,25 +25,35 @@ int main()
         std::cout << c;
         std::cout << robo;
         c.signForm(robo);
+        srand(time(NULL));
         c.executeForm(robo);
         c.executeForm(robo);
         c.executeForm(robo);
-        
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+        c.executeForm(robo);
+     }
+    catch(std::exception& e)
+    {
+        std::cout << e.what();
+    }
+    std::cout << "******************PRESIDENTIAL****************\n";
+    try{
+        Bureacrat d("moha", 2);
+        PresidentialPardonForm pres("pres");
+        std::cout << d;
+        d.signForm(pres);
+        std::cout << pres;
+        d.executeForm(pres);
     }
     catch(std::exception& e)
     {
         std::cout << e.what();
     }
-    //     Bureacrat a("ali", 1);
-    //     std::cout << a ;
-    //     Bureacrat c("lilo", 2);
-    //     c.incrementGrade();
-    //     c.incrementGrade();
-    //     std::cout << a;
-
-    // }
-    // catch(std::exception& e)
-    // {
-    //     std::cout << e.what() << std::endl;
-    // }
 }

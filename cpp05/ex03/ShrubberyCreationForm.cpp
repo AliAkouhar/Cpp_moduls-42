@@ -40,3 +40,8 @@ void ShrubberyCreationForm::execute(Bureacrat const & executor) const{
     else
         throw GradeTooLowException();
 }
+
+AForm* ShrubberyCreationForm::createForm(std::string target)
+{
+    return new ShrubberyCreationForm(target);
+}

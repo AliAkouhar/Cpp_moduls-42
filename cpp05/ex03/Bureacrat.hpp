@@ -1,18 +1,17 @@
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#ifndef BUREACRAT_HPP
+#define BUREACRAT_HPP
 
 #include <iostream>
 #include <string>
 #include <exception>
 
-class Form;
+class AForm;
 
 class Bureacrat{
     private:
         const std::string _name;
         int _grade;
     public:
-        Bureacrat();
         Bureacrat(std::string name, int grade);
         Bureacrat(const Bureacrat& other);
         Bureacrat& operator=(const Bureacrat& other);
@@ -32,7 +31,8 @@ class Bureacrat{
                 const char* what() const throw();
         };
 
-        void signForm(Form& f) const;
+        void signForm(AForm& f) const;
+        void executeForm(AForm const & form);
 };
 std::ostream& operator<<(std::ostream& out, const Bureacrat& b);
 

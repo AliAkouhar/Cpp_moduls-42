@@ -1,7 +1,5 @@
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
-
-Bureacrat::Bureacrat() : _name("default"), _grade(150) {}
+#include "Bureacrat.hpp"
+#include "AForm.hpp"
 
 Bureacrat::Bureacrat(std::string name, int grade) : _name(name), _grade(grade)
 {
@@ -50,7 +48,7 @@ const char* Bureacrat::GradeTooLowException::what() const throw()
     return ("the grade is too Low");
 }
 
-void Bureacrat::signForm(Form& f) const
+void Bureacrat::signForm(AForm& f) const
 {
     try{
         f.beSigned(*this);
@@ -60,6 +58,19 @@ void Bureacrat::signForm(Form& f) const
     {
         std::cout << this->getName() << " couldn't sign " << f.getName()
                   << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureacrat::executeForm(AForm const & form)
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << this->getName() << " execute " << form.getName() << std::endl;
+    }
+    catch(std::exception& e)
+    {
+        std::cout << this->getName() << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
     }
 }
 
