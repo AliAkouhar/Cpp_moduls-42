@@ -42,7 +42,10 @@ void ScalarConverter::convertInt(std::string str)
         std::cout << "char: impossible" << std::endl;
     else
         std::cout << "char: non displayable" << std::endl;
-    std::cout << "int: " << value << std::endl;
+    if (value < INT_MIN || value > INT_MAX)
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value) << std::endl;
     std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
     std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
 }
@@ -107,7 +110,7 @@ bool ScalarConverter::isFloat(std::string str)
     bool dot = false;
     bool digit = true;
     int len = str.length();
-    if (str == "nan" || str == "+inf" || str == "-inf")
+    if (str == "nanf" || str == "+inff" || str == "-inff")
         return true;
     if (len < 2 || str[len - 1] != 'f')
         return false;
@@ -136,12 +139,12 @@ void ScalarConverter::convertFloat(std::string str)
 {
     float value = atof(str.c_str());
     int intValue = static_cast<int>(value);
-    if (str == "-inf" || str == "+inf" || str == "nan")
+    if (str == "-inff" || str == "+inff" || str == "nanf")
     {
         std::cout << "Char: impossible" << std::endl;
         std::cout << "Int: impossible" << std::endl;
-        std::cout << "Float: " << str << "f" << std::endl;
-        std::cout << "Double: " << str << std::endl;
+        std::cout << "Float: " << str << std::endl;
+        std::cout << "Double: " << str.substr(0, str.length() - 1) << std::endl;
         return;
     }
     if (intValue >= 32 && intValue <= 126)

@@ -7,7 +7,6 @@ int main()
 
     ptr1->x = 42;
     ptr1->c = 'a';
-    
     uintptr_t raw = Serializer::serislize(ptr1);
     std::cout << "raw: " << raw << std::endl;
     std::cout << "---------PTR1!---------" << std::endl;

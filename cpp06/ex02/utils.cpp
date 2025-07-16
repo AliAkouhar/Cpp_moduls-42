@@ -2,6 +2,7 @@
 #include "A.hpp"
 #include "C.hpp"
 #include "Base.hpp"
+#include "utils.hpp"
 
 Base* generate(void)
 {
@@ -9,11 +10,20 @@ Base* generate(void)
     srand(time(NULL));
     i = rand();
     if (i % 2 == 0)
+    {
+        std::cout << "Generating an object of type A" << std::endl;
         return new A();
+    }
     else if (i % 3 == 0)
+    {
+        std::cout << "Generating an object of type B" << std::endl;
         return new B();
+    }
     else
+    {
+        std::cout << "Generating an object of type C" << std::endl;
         return new C();
+    }
 }
 
 void identify(Base* p)

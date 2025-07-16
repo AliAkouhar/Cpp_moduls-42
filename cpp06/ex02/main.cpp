@@ -4,9 +4,9 @@ int main()
 {
     Base* ptr = generate();
     std::cout << "Identify by pointer:" << std::endl;
-    idnetify(ptr);
+    idnetify(*ptr);
     std::cout << "Identify by reference:" << std::endl;
-    identify(*ptr);
+    identify(ptr);
     delete ptr;
     return 0;
 }
