@@ -42,7 +42,7 @@ int Span::shortestSpan()
     {
         int diff = *(it + 1) - *it;
         if (diff < shortest)
-            shortest =diff;
+            shortest = diff;
     }
     return shortest;
 }

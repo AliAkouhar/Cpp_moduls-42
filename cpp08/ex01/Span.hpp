@@ -23,7 +23,6 @@ class Span
         int shortestSpan();
         int longestSpan();
         void fillSpan(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-        std::vector<int>& generateVector(unsigned int size);
 
         class NoSpanException : public std::exception
         {

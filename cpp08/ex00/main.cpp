@@ -11,12 +11,21 @@ int main()
     vec.push_back(5);
     try
     {
-        int index = easyfind(vec, 10);
+        int index = easyfind(vec, 4);
         std::cout << "Value found! at index " << index << std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
+    }
+    try
+    {
+        int index = easyfind(vec, 6);
+        std::cout << "Found at index: " << index << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
     }
     
 }
