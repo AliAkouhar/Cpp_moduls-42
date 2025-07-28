@@ -11,7 +11,7 @@ void func(T& element)
 }
 
 template <typename T>
-void iter(T* arr, size_t size, void (*func)(T&))
+void iter(T* arr, size_t size, void (*func)(T&) )
 {
     for (size_t i = 0; i < size; i++)
     {
