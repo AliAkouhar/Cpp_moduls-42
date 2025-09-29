@@ -77,13 +77,13 @@ int is_valide_date(const std::string &date)
     if (sscanf(date.c_str(), "%d-%d-%d", &y, &m, &d) != 3)
         return false;
     if (m < 1 || m > 12 || d < 1 || d > 31 || y < 0 || y > 2025)
-        throw BitcoinExchange::dateValueException();
+        return false;
     return true;
 }
 
 void parseFirstDate(const std::string &date)
 {
-    if (is_valide_date(date))
+    if (!is_valide_date(date))
         throw BitcoinExchange::InputException();
 }
 
