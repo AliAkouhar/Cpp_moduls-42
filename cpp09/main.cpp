@@ -21,7 +21,15 @@ int main(int ac, char **av)
         }
         while (getline(file, line))
         {
-            std::cout << line << std::endl;
+            try
+            {
+                btc.calcule(line);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+            
         }
     }
     catch(const std::exception& e)
