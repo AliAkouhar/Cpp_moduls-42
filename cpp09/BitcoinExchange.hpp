@@ -6,6 +6,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <exception>
+#include <string>
 
 class BitcoinExchange {
     private:
@@ -15,7 +16,7 @@ class BitcoinExchange {
         ~BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &other);
         BitcoinExchange &operator=(const BitcoinExchange &other);
-        std::map<std::string, float> getDataBase() const { return data; }
+        const std::map<std::string, float>& getDataBase() const;
 
         void    readData();
         class ArgException : public std::exception {
@@ -23,6 +24,11 @@ class BitcoinExchange {
                 virtual const char* what() const throw();
         };
         class FileException : public std::exception{
+            public:
+                virtual const char* what() const throw();
+        };
+
+        class FormatException : public std::exception{
             public:
                 virtual const char* what() const throw();
         };

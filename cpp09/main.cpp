@@ -9,8 +9,19 @@ int main(int ac, char **av)
             throw BitcoinExchange::ArgException();
         BitcoinExchange btc;
         btc.readData();
-        for (std::map<std::string, float>::iterator it = btc.getDataBase().begin(); it != btc.getDataBase().end(); ++it) {
-            std::cout << "Date: " << it->first << " | Value: " << it->second << std::endl;
+        std::ifstream file(av[1]);
+        if (!file.is_open())
+            throw BitcoinExchange::FileException();
+        std::string line;
+        getline(file, line);
+        if (line != "data | value")
+        {
+            file.close();
+            throw BitcoinExchange::FormatException();
+        }
+        while (getline(file, line))
+        {
+            std::cout << line << std::endl;
         }
     }
     catch(const std::exception& e)

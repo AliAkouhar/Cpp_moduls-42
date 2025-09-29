@@ -34,6 +34,11 @@ void BitcoinExchange::readData()
     }
 }
 
+const std::map<std::string, float>& BitcoinExchange::getDataBase() const
+{
+    return data;
+}
+
 const char* BitcoinExchange::ArgException::what() const throw()
 {
     return "ERROR: Bad Arguments\nUse : ./btc <INput file>\n";
@@ -42,4 +47,9 @@ const char* BitcoinExchange::ArgException::what() const throw()
 const char* BitcoinExchange::FileException::what() const throw()
 {
     return "ERROR: Could not open file.\n";
+}
+
+const char* BitcoinExchange::FormatException::what() const throw()
+{
+    return "ERROR: File format is incorrect.\n(First line should be: data | value)\n";
 }
