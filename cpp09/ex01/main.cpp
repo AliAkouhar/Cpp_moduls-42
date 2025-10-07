@@ -13,6 +13,8 @@ int main(int ac, char **av)
             RPN::calculate(input, stack);
         if (!stack.empty() && stack.size() == 1)
             std::cout << stack.top() << std::endl;
+        else
+            throw RPN::ArgumentError();
     }
     catch(const std::exception& e)
     {
