@@ -35,6 +35,9 @@ class PmergeMe
         std::vector<int> ExtractSecondElements(std::vector<Pair>& pairs);
         void displayVec(std::vector<int>& vec);
         void displayTimeOfVec(unsigned long time);
+        void InsertWithJacobOrderVec(std::vector<int>& firstElements, std::vector<int>& secondElements);
+        void insertUnpairedElementVec(std::vector<int>& secondElements, int unpairedElement);
+        std::vector<size_t> getJacobOrderVec(size_t size);
         //Deque Methods
 
         void fillDeq(std::vector<int> vec);
@@ -43,6 +46,9 @@ class PmergeMe
         std::deque<Pair> sortPairsDeq(std::deque<int>& deq);
         std::deque<int> ExtractFirstElements(std::deque<Pair>& pairs);
         std::deque<int> ExtractSecondElements(std::deque<Pair>& pairs);
+        void InsertWithJacobOrderDeq(std::deque<int>& firstElements, std::deque<int>& secondElements);
+        void insertUnpairedElementDeq(std::deque<int>& secondElements, int unpairedElement);
+        std::deque<size_t> getJacobOrderDeq(size_t size);
 
         class InvalidArgumentException : public std::exception
         {

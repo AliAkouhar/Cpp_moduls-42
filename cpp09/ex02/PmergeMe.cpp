@@ -18,7 +18,7 @@ PmergeMe::~PmergeMe() {}
 PmergeMe::PmergeMe(std::vector<int> vec)
 {
     fillVec(vec);
-    // fillDeq(vec);
+    fillDeq(vec);
 }
 
 
@@ -103,11 +103,6 @@ void PmergeMe::MergeInsertionSort()
     displayTimeOfDeq(endDeq - startDeq);
 }
 
-// void PmergeMe::fillDeq(std::vector<int> vec)
-// {
-//     for (size_t i = 0; i < vec.size(); i++)
-//         _Mydeque.push_back(vec[i]);
-// }
 
 //*** VECTOR METHODS ***/
 
@@ -125,7 +120,7 @@ bool rule(const Pair& a, const Pair& b)
 std::vector<Pair> PmergeMe::sortPairsVec(std::vector<int>& vec)
 {
     std::vector<Pair> pairs;
-    for (size_t i = 0; i < vec.size(); i += 2)
+    for (size_t i = 0; i + 1 < vec.size(); i += 2)
     {
         int a = vec[i];
         int b = vec[i + 1];
@@ -154,6 +149,70 @@ std::vector<int> PmergeMe::ExtractSecondElements(std::vector<Pair>& pairs)
     return result;
 }
 
+std::vector<size_t> PmergeMe::getJacobOrderVec(size_t size)
+{
+    std::vector<size_t> order;
+    if (size == 0)
+        return order;
+    std::vector<size_t> jacobSuite;
+    jacobSuite.push_back(1);
+    size_t j1 = 1, j2 = 0;
+    while(1)
+    {
+        size_t next = j1 + (2 * j2);
+        if (next >= size)
+            break;
+        jacobSuite.push_back(next);
+        j1 = j2;
+        j2 = next;
+    }
+    std::vector<bool> inserted(size, false);
+    for (size_t i = 0; i < jacobSuite.size(); i++)
+    {
+        size_t j = jacobSuite[i];
+        if (j < size && !inserted[j])
+        {
+            order.push_back(j);
+            inserted[j] = true;
+        }
+        size_t start = (i == 0) ? 0 : jacobSuite[i - 1] + 1;
+        for (ssize_t k = j - 1; k >= static_cast<ssize_t>(start); k--)
+        {
+            if (!inserted[k])
+            {
+                order.push_back(k);
+                inserted[k] = true;
+            }
+        }
+    }
+    for (size_t i = 0; i < size; i++)
+    {
+        if (!inserted[i])
+        {
+            order.push_back(i);
+            inserted[i] = true;
+        }
+    }
+    return order;
+}
+
+void PmergeMe::InsertWithJacobOrderVec(std::vector<int>& firstElements, std::vector<int>& secondElements)
+{
+    std::vector<size_t> jacobOrder = getJacobOrderVec(firstElements.size());
+    for (size_t i = 0; i < jacobOrder.size(); i++)
+    {
+        int value = firstElements[jacobOrder[i]];
+        std::vector<int>::iterator it = std::lower_bound(secondElements.begin(), secondElements.end(), value);
+        secondElements.insert(it, value);
+    }
+}
+
+void PmergeMe::insertUnpairedElementVec(std::vector<int>& secondElements, int unpairedElement)
+{
+    std::vector<int>::iterator it = std::lower_bound(secondElements.begin(), secondElements.end(), unpairedElement);
+    secondElements.insert(it, unpairedElement);
+}
+
 void PmergeMe::MergeInsertionSortVec(std::vector<int>& vec)
 {
     std::vector<Pair> vecPairs = sortPairsVec(vec);
@@ -161,6 +220,10 @@ void PmergeMe::MergeInsertionSortVec(std::vector<int>& vec)
     std::vector<int> secondElements = ExtractSecondElements(vecPairs);
     bool hasUnpairedElement = (vec.size() % 2 != 0);
     int unpairedElement = hasUnpairedElement ? vec.back() : -1;
+    InsertWithJacobOrderVec(firstElements, secondElements);
+    if (hasUnpairedElement)
+        insertUnpairedElementVec(secondElements, unpairedElement);
+    vec = secondElements;
 }
 
 void PmergeMe::displayVec(std::vector<int>& vec)
@@ -191,7 +254,7 @@ void PmergeMe::fillDeq(std::vector<int> vec)
 std::deque<Pair> PmergeMe::sortPairsDeq(std::deque<int>& deq)
 {
     std::deque<Pair> pairs;
-    for (size_t i = 0; i < deq.size(); i += 2)
+    for (size_t i = 0; i + 1 < deq.size(); i += 2)
     {
         int a = deq[i];
         int b = deq[i + 1];
@@ -221,10 +284,85 @@ std::deque<int> PmergeMe::ExtractSecondElements(std::deque<Pair>& pairs)
 }
 
 
+std::deque<size_t> PmergeMe::getJacobOrderDeq(size_t size)
+{
+    std::deque<size_t> order;
+    if (size == 0)
+        return order;
+    std::deque<size_t> jacobSuite;
+    jacobSuite.push_back(1);
+    size_t j1 = 1, j2 = 0;
+    while(1)
+    {
+        size_t next = j1 + (2 * j2);
+        if (next >= size)
+            break;
+        jacobSuite.push_back(next);
+        j1 = j2;
+        j2 = next;
+    }
+    std::deque<bool> inserted(size, false);
+    for (size_t i = 0; i < jacobSuite.size(); i++)
+    {
+        size_t j = jacobSuite[i];
+        if (j < size && !inserted[j])
+        {
+            order.push_back(j);
+            inserted[j] = true;
+        }
+        size_t start = (i == 0) ? 0 : jacobSuite[i - 1] + 1;
+        for (ssize_t k = j - 1; k >= static_cast<ssize_t>(start); k--)
+        {
+            if (!inserted[k])
+            {
+                order.push_back(k);
+                inserted[k] = true;
+            }
+        }
+    }
+    for (size_t i = 0; i < size; i++)
+    {
+        if (!inserted[i])
+        {
+            order.push_back(i);
+            inserted[i] = true;
+        }
+    }
+    return order;
+}
+
+void PmergeMe::InsertWithJacobOrderDeq(std::deque<int>& firstElements, std::deque<int>& secondElements)
+{
+    std::deque<size_t> jacobOrder = getJacobOrderDeq(firstElements.size());
+    for (size_t i = 0; i < jacobOrder.size(); i++)
+    {
+        int value = firstElements[jacobOrder[i]];
+        std::deque<int>::iterator it = std::lower_bound(secondElements.begin(), secondElements.end(), value);
+        secondElements.insert(it, value);
+    }
+}
+
+void PmergeMe::insertUnpairedElementDeq(std::deque<int>& secondElements, int unpairedElement)
+{
+    std::deque<int>::iterator it = std::lower_bound(secondElements.begin(), secondElements.end(), unpairedElement);
+    secondElements.insert(it, unpairedElement);
+}
+
+void PmergeMe::displayTimeOfDeq(unsigned long time)
+{
+    std::cout << "Time to process a range of " << _Mydeque.size() << " elements with std::deque : " << time << " us" << std::endl;
+}
+
 void PmergeMe::MergeInsertionSortDeq(std::deque<int>& deq)
 {
     std::deque<Pair> deqPairs = sortPairsDeq(deq);
     std::deque<int> firstElements = ExtractFirstElements(deqPairs);
     std::deque<int> secondElements = ExtractSecondElements(deqPairs);
-    
+    bool hasUnpairedElement = (deq.size() % 2 != 0);
+    int straggler = hasUnpairedElement ? deq.back() : -1;
+
+    InsertWithJacobOrderDeq(firstElements, secondElements);
+    if (hasUnpairedElement)
+        insertUnpairedElementDeq(secondElements, straggler);
+    deq = secondElements;
 }
