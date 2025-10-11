@@ -89,7 +89,6 @@ void parseFirstDate(const std::string &date)
 
 bool   checkDouble(std::string str)
 {
-    //! still need a lot of work
     int count = 0;
 
     for (size_t i = 0; i < str.length(); i++)
@@ -123,7 +122,7 @@ void BitcoinExchange::calcule(const std::string &line)
     std::map<std::string, float>::iterator it;
 
     if (!countPipe(line))
-        throw FormatException();
+        throw InputException();
     pair.first = trim(line.substr(0, line.find('|')));
     pair.second = trim(line.substr(line.find('|') + 1));
     parseFirstDate(pair.first);
@@ -165,7 +164,7 @@ const char* BitcoinExchange::FormatException::what() const throw()
 
 const char* BitcoinExchange::InputException::what() const throw()
 {
-    return "ERROR: Bad Input\n";
+    return "ERROR: Bad Input";
 }
 
 const char* BitcoinExchange::dateValueException::what() const throw()
