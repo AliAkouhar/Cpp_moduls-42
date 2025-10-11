@@ -25,6 +25,12 @@ class RPN
             public:
                 const char* what() const throw();
         };
+
+        class InvalidArgument : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
         static void calculate(const std::string &input, std::stack<int> &stack);
         static bool isNumber(const std::string &input);
         static bool isOperator(const std::string &input);

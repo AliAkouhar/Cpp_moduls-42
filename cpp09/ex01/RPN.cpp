@@ -91,10 +91,17 @@ void RPN::calculate(const std::string &input, std::stack<int> &stack)
                     throw RPN::ArgumentError();
                 break;
             default:
-                throw RPN::ArgumentError();
+                throw RPN::InvalidArgument();
                 break;
         }
     }
+    else
+        throw RPN::InvalidArgument();
+}
+
+const char* RPN::InvalidArgument::what() const throw()
+{
+    return "Error: Invalid argument.";
 }
 
 const char* RPN::ArgumentError::what() const throw()
