@@ -1,4 +1,4 @@
-#ifndef RPN_HPPP
+#ifndef RPN_HPP
 #define RPN_HPP
 
 #include <iostream>
